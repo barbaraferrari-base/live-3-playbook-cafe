@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Café com a Bá: Cardio Liberou — E Agora?</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+    :root {
+      --teal: #0a2a35;
+      --blue-accent: #4fa3c8;
+      --light-bg: #f4f7f9;
+      --white: #ffffff;
+      --gray-text: #444;
+      --border: #dce5ea;
+      --accent-yellow: #e8c94b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--light-bg);
+      color: var(--gray-text);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .cover {
+      background: var(--teal);
+      color: white;
+      padding: 60px 48px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; right: -60px;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: rgba(79, 163, 200, 0.12);
+    }
+
+    .cover-badge {
+      display: inline-block;
+      background: var(--blue-accent);
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+
+    .cover-series {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    .cover-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      color: white;
+    }
+
+    .cover-title span { color: var(--blue-accent); }
+
+    .cover-subtitle {
+      font-size: 16px;
+      color: rgba(255,255,255,0.7);
+      max-width: 520px;
+      margin-bottom: 40px;
+    }
+
+    .cover-meta {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding-top: 24px;
+    }
+
+    .cover-meta-item {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .cover-meta-item strong {
+      display: block;
+      font-size: 13px;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 0;
+      text-transform: none;
+      margin-top: 2px;
+    }
+
+    .body-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 56px 48px 80px;
+    }
+
+    .index-block {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 32px 36px;
+      margin-bottom: 52px;
+    }
+
+    .index-block h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: var(--teal);
+      margin-bottom: 24px;
+    }
+
+    .index-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 32px;
+    }
+
+    .index-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px dotted var(--border);
+      padding: 8px 0;
+      font-size: 14px;
+    }
+
+    .index-item a { color: var(--teal); text-decoration: none; font-weight: 500; }
+    .index-item a:hover { color: var(--blue-accent); }
+    .index-num { color: var(--blue-accent); font-weight: 600; font-size: 13px; }
+
+    .section { margin-bottom: 56px; }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .dot-tag { width: 14px; height: 14px; border-radius: 50%; }
+    .dot-essential { background: #e74c3c; }
+    .dot-important { background: #3498db; }
+    .dot-good { background: #27ae60; }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #aaa;
+    }
+
+    h2.section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: var(--teal);
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+
+    h3.sub-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--teal);
+      margin: 28px 0 10px;
+      padding-left: 12px;
+      border-left: 3px solid var(--blue-accent);
+    }
+
+    p { margin-bottom: 14px; }
+
+    ul.body-list {
+      padding-left: 20px;
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+
+    ul.body-list li { margin-bottom: 8px; }
+
+    .callout {
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 24px 0;
+      font-size: 14px;
+    }
+
+    .callout-essential { background: #fffbe6; border-left: 4px solid var(--accent-yellow); }
+    .callout-warning   { background: #fff2ee; border-left: 4px solid #e07c4a; }
+    .callout-blue      { background: #eef6fb; border-left: 4px solid var(--blue-accent); }
+    .callout-red       { background: #fff0f0; border-left: 4px solid #c0392b; }
+
+    .callout strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #555;
+    }
+
+    .rules-block {
+      background: var(--teal);
+      color: white;
+      border-radius: 8px;
+      padding: 28px 32px;
+      margin: 24px 0;
+    }
+
+    .rules-block h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--blue-accent);
+      margin-bottom: 16px;
+    }
+
+    .rule-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .rule-num {
+      background: var(--blue-accent);
+      color: white;
+      font-weight: 700;
+      font-size: 11px;
+      min-width: 22px; height: 22px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .scenario-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .scenario-header {
+      background: var(--teal);
+      color: white;
+      padding: 12px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    .scenario-body {
+      padding: 16px;
+      font-size: 13px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .scenario-body ul { padding-left: 16px; margin: 8px 0; }
+    .scenario-body li { margin-bottom: 6px; }
+
+    .flow-steps {
+      display: flex;
+      gap: 0;
+      margin: 24px 0;
+      flex-wrap: wrap;
+    }
+
+    .flow-step {
+      flex: 1;
+      min-width: 120px;
+      background: white;
+      border: 1px solid var(--border);
+      padding: 16px;
+      text-align: center;
+      position: relative;
+      font-size: 13px;
+    }
+
+    .flow-step:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      right: -14px; top: 50%;
+      transform: translateY(-50%);
+      color: var(--blue-accent);
+      font-size: 18px;
+      font-weight: bold;
+      z-index: 1;
+    }
+
+    .flow-step-num {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--blue-accent);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .flow-step-label { font-weight: 600; color: var(--teal); font-size: 12px; }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 13px;
+    }
+
+    .data-table th {
+      background: var(--teal);
+      color: white;
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .data-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:nth-child(even) td { background: #fafbfc; }
+    .data-table td:first-child { font-weight: 600; color: var(--teal); }
+
+    .gargalo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .gargalo-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .gargalo-card h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+
+    .gargalo-card p { font-size: 13px; margin: 0; color: #666; }
+
+    .mental-model {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 18px 22px;
+      margin-bottom: 12px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .mm-num {
+      background: var(--teal);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      min-width: 28px; height: 28px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .mm-content h4 { font-size: 14px; font-weight: 700; color: var(--teal); margin-bottom: 4px; }
+    .mm-content p { font-size: 13px; color: #666; margin: 0; }
+
+    .playbook-cta {
+      background: var(--blue-accent);
+      color: white;
+      border-radius: 8px;
+      padding: 32px 36px;
+      text-align: center;
+      margin: 48px 0;
+    }
+
+    .playbook-cta h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .playbook-cta p { font-size: 14px; opacity: 0.9; margin-bottom: 20px; }
+
+    .playbook-btn {
+      display: inline-block;
+      background: white;
+      color: var(--blue-accent);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 12px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+    }
+
+    .before-after {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 24px 0;
+      font-size: 13px;
+    }
+
+    .ba-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      background: var(--teal);
+      color: white;
+      padding: 12px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      gap: 8px;
+    }
+
+    .ba-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-bottom: 1px solid var(--border);
+      padding: 12px 16px;
+      gap: 8px;
+      align-items: start;
+    }
+
+    .ba-row:last-child { border-bottom: none; }
+    .ba-row:nth-child(even) { background: #fafbfc; }
+    .ba-topic { font-weight: 600; color: var(--teal); }
+    .ba-before { color: #c0392b; }
+    .ba-after { color: #27ae60; }
+
+    .paper-footer {
+      background: var(--teal);
+      color: rgba(255,255,255,0.5);
+      font-size: 11px;
+      text-align: center;
+      padding: 20px 48px;
+      letter-spacing: 0.5px;
+    }
+
+    @media print {
+      .cover { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    }
+
+    @media (max-width: 640px) {
+      .body-wrap { padding: 32px 20px 60px; }
+      .cover { padding: 40px 24px 36px; }
+      .cover-title { font-size: 28px; }
+      .index-grid, .gargalo-grid, .scenario-grid { grid-template-columns: 1fr; }
+      .flow-steps { flex-direction: column; }
+      .flow-step::after { display: none; }
+      .ba-header, .ba-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- CAPA -->
+<div class="cover">
+  <div class="cover-badge">Café com a Bá</div>
+  <div class="cover-series">Anestesia Veterinária na Prática 2026</div>
+  <h1 class="cover-title">Cardio Liberou —<br><span>E Agora?</span></h1>
+  <p class="cover-subtitle">Como se posicionar quando o exame está alterado, o cardiologista 'liberou' e o veterinário quer operar.</p>
+  <div class="cover-meta">
+    <div class="cover-meta-item">Tempo de leitura<strong>15 a 20 min</strong></div>
+    <div class="cover-meta-item">Para quem é<strong>Anestesistas Veterinários</strong></div>
+    <div class="cover-meta-item">Série<strong>Café com a Bá</strong></div>
+  </div>
+</div>
+
+<div class="body-wrap">
+
+  <!-- ÍNDICE -->
+  <div class="index-block">
+    <h2>Índice</h2>
+    <div class="index-grid">
+      <div class="index-item"><a href="#problema">O Problema Central</a><span class="index-num">01</span></div>
+      <div class="index-item"><a href="#fluxo">O Fluxo da Conversa</a><span class="index-num">05</span></div>
+      <div class="index-item"><a href="#situacoes">Três Situações Frequentes</a><span class="index-num">02</span></div>
+      <div class="index-item"><a href="#nao">Quando Dizer Não</a><span class="index-num">06</span></div>
+      <div class="index-item"><a href="#racas">Tabela por Raça</a><span class="index-num">03</span></div>
+      <div class="index-item"><a href="#saber">O Que Você Precisa Saber</a><span class="index-num">07</span></div>
+      <div class="index-item"><a href="#exame-hora">O Exame Chegou na Hora</a><span class="index-num">04</span></div>
+      <div class="index-item"><a href="#modelos">Modelos Mentais</a><span class="index-num">08</span></div>
+    </div>
+  </div>
+
+  <!-- 1. PROBLEMA CENTRAL -->
+  <div id="problema" class="section">
+    <div class="section-tag">
+      <div class="dot-tag dot-essential"></div>
+      <span class="section-label">Indispensável</span>
+    </div>
+    <h2 class="section-title">O Problema Central: quem libera é o anestesista</h2>
+
+    <p>'O cardio liberou' é a frase que mais gera confusão na relação entre anestesista, veterinário e tutor. O cardiologista libera para ele — para o contexto clínico dele. Ele não sabe o protocolo anestésico que será usado. Quem define o risco anestésico e quem assume o rojão é o anestesista.</p>
+
+    <div class="scenario-grid">
+      <div class="scenario-card">
+        <div class="scenario-header">O que cada um entende</div>
+        <div class="scenario-body">
+          <ul>
+            <li><strong>Cardiologista diz:</strong> 'pelos meus parâmetros, não há mais o que mexer em medicação'</li>
+            <li><strong>Veterinário ouve:</strong> 'pode anestesiar'</li>
+            <li><strong>Anestesista recebe:</strong> paciente com exame alterado e um 'o cardio liberou'</li>
+          </ul>
+        </div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-header">Quem responde se der ruim</div>
+        <div class="scenario-body">
+          <ul>
+            <li>Responsabilidade legal em caso de óbito: do anestesista</li>
+            <li>O cardiologista não sabe o protocolo que foi usado</li>
+            <li>Muitas vezes nem quer saber, para não assumir essa responsabilidade.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout callout-essential">
+      <strong>Regra Central</strong>
+      Quem libera o paciente cardiopata para cirurgia é o anestesista. O cardiologista está dizendo que não há mais o que ajustar no tratamento. Isso não significa que o paciente está apto para anestesia geral.
+    </div>
+  </div>
+
+  <!-- 2. TRÊS SITUAÇÕES -->
+  <div id="situacoes" class="section">
+    <div class="section-tag">
+      <div class="dot-tag dot-essential"></div>
+      <span class="section-label">Indispensável</span>
+    </div>
+    <h2 class="section-title">Três Situações Frequentes</h2>
+
+    <h3 class="sub-title">Situação 1 — Cardiopata Terminal, Exame Alterado sem Melhora Possível</h3>
+    <p>Paciente idoso, exame francamente alterado, cardiologista diz que não há mais o que ajustar. Veterinário quer operar (laparotomia exploratória, biópsia — não emergencial).</p>
+
+    <ul class="body-list">
+      <li>Ligar para o cardiologista antes de qualquer coisa. Não se basear no que o veterinário entendeu que ele disse.</li>
+      <li>Perguntar diretamente: "Para você acordado ele está ok. Para mim anestesiado não está. Tem alguma conduta possível?"</li>
+      <li>Se não há melhora possível, levar o caso ao tutor com todos os riscos explicitados.</li>
+      <li>Verificar as condições de pós-operatório. Paciente que descompensa precisa de estrutura específica.</li>
+      <li>Se a clínica não tem estrutura de pós-operatório, encaminhar para onde tenha.</li>
+      <li>Se for urgência real, anestesiar com o máximo de cuidado, tutor e veterinário cientes.</li>
+    </ul>
+
+    <div class="callout callout-blue">
+      <strong>Caso Real</strong>
+      Paciente terminal, laparotomia exploratória, cardio 'liberou'. Após conversa direta com a cardiologista, ficou claro que ela liberou apenas no sentido de que não havia mais o que alterar no tratamento. Não que o paciente estava apto para anestesia geral. O procedimento foi encaminhado para cidade com UTI pós-operatória.
+    </div>
+
+    <h3 class="sub-title">Situação 2 — Exame Alterado, Tratamento Recente, Sem Eco de Controle</h3>
+    <p>Paciente inicia tratamento cardiológico e é anestesiado poucos dias depois, sem repetir o eco para avaliar a resposta.</p>
+
+    <ul class="body-list">
+      <li>Paciente que acabou de iniciar tratamento sem eco de controle não deve ser anestesiado.</li>
+      <li>Aguardar pelo menos 15 a 20 dias de tratamento antes de repetir o eco.</li>
+      <li>Se não der para esperar, melhor não iniciar o tratamento e anestesiar com o quadro basal conhecido.</li>
+      <li>Iniciar tratamento e anestesiar em seguida bagunça a hemodinâmica sem saber o efeito real da medicação.</li>
+      <li>Se houver eco anterior, usá-lo para comparar e entender o quadro basal.</li>
+    </ul>
+
+    <div class="callout callout-red">
+      <strong>Caso Real — Desfecho Fatal</strong>
+      York com endocardiose bilateral, repercussão hemodinâmica leve. Cardiologista indicou: 'trata 5 dias e pode anestesiar.' Paciente veio a óbito no procedimento. Tratamento recente sem eco de controle significa não saber com o que se está lidando.
+    </div>
+
+    <h3 class="sub-title">Situação 3 — Alteração no Eletro, Sem Eco, Raça Predisposta</h3>
+    <p>Shih Tzu, Doberman, Boxer — eletro com BAV de 1º ou 2º grau, sem eco disponível, cirurgia eletiva agendada.</p>
+
+    <ul class="body-list">
+      <li>Shih Tzu com BAV tem tônus vagal aumentado por característica da raça, mas isso não significa ignorar o achado.</li>
+      <li>Explicar ao tutor e ao veterinário que o eco provavelmente não vai mostrar nada, mas a conversa precisa acontecer mesmo assim.</li>
+      <li>Em Doberman e Boxer jovem o eletro é mais informativo que o eco, porque arritmias podem aparecer antes de qualquer alteração estrutural.</li>
+      <li>O Holter confirmaria se é alteração real ou tônus vagal. É difícil de conseguir, mas deve ser mencionado na conversa.</li>
+      <li>Se só puder pedir um exame, saber qual é mais informativo para aquela raça e faixa etária.</li>
+    </ul>
+  </div>
+
+  <!-- 3. TABELA POR RAÇA -->
+  <div id="racas" class="section">
+    <div class="section-tag">
+      <div class="dot-tag dot-important"></div>
+      <span class="section-label">Importante</span>
+    </div>
+    <h2 class="section-title">Prioridade de Exame por Raça e Contexto</h2>
+
+    <table class="data-table">
+      <tr>
+        <th>Raça / Contexto</th>
+        <th>Prioridade do Exame</th>
+      </tr>
+      <tr>
+        <td>Doberman / Boxer jovem</td>
+        <td>Eletro. Arritmias precedem a alteração estrutural; eco pode ser normal nessa fase.</td>
+      </tr>
+      <tr>
+        <td>Poodle / Shih Tzu idoso com sopro</td>
+        <td>Eco. Avaliar repercussão hemodinâmica da endocardiose mitral.</td>
+      </tr>
+      <tr>
+        <td>Schnauzer de meia-idade</td>
+        <td>Eletro. Síndrome do nó doente é o principal achado nessa raça.</td>
+      </tr>
+      <tr>
+        <td>Boxer / Doberman idoso com arritmia</td>
+        <td>Eco + eletro. Descartar cardiopatia estrutural associada à arritmia, incluindo tumores.</td>
+      </tr>
+      <tr>
+        <td>Spitz / Yorkshire jovem</td>
+        <td>Eco. PDA e cardiopatias congênitas são frequentes nessas raças jovens.</td>
+      </tr>
+    </table>
+
+    <div class="callout callout-essential">
+      <strong>Regra Prática</strong>
+      Pedir exame e ignorar a alteração é produzir prova contra si mesmo. "Eletro alterado, mas o shih tzu tem isso mesmo." Se o exame veio alterado, a conversa precisa acontecer com o veterinário e com o tutor.
+    </div>
+  </div>
+
+  <!-- 4. EXAME NA HORA -->
+  <div id="exame-hora" class="section">
+    <div class="section-tag">
+      <div class="dot-tag dot-important"></div>
+      <span class="section-label">Importante</span>
+    </div>
+    <h2 class="section-title">O Exame Chegou na Hora</h2>
+
+    <p>O veterinário deixa para mostrar o exame no momento do atendimento, quando o anestesista já está com o material montado. A tendência de aceitar o risco aumenta. Cuidado com isso.</p>
+
+    <div class="gargalo-grid">
+      <div class="gargalo-card">
+        <h4>📋 Solicitar com antecedência</h4>
+        <p>Não aceitar "vejo na hora". Exame alterado na hora do atendimento é uma armadilha, intencional ou não.</p>
+      </div>
+      <div class="gargalo-card">
+        <h4>🚗 Perder viagem pode valer a pena</h4>
+        <p>Dependendo do cliente veterinário, perder a viagem vale mais do que perder o paciente e a reputação.</p>
+      </div>
+    </div>
+
+    <div class="callout callout-warning">
+      <strong>Atenção</strong>
+      O veterinário não está fazendo isso na maldade. Ele deixou para mostrar na hora porque ali, com você presente e o material já montado, a tendência de aceitar o risco é maior. Saiba disso e se antecipe.
+    </div>
+  </div>
+
+  <!-- 5. FLUXO DA CONVERSA -->
+  <div id="fluxo" class="section">
+    <div class="section-tag">
+      <div class="dot-tag dot-essential"></div>
+      <span class="section-label">Indispensável</span>
+    </div>
+    <h2 class="section-title">O Fluxo da Conversa: três passos, na ordem certa</h2>
+
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="flow-step-num">01</div>
+        <div class="flow-step-label">Falar com o Cardiologista</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num">02</div>
+        <div class="flow-step-label">Falar com o Veterinário</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num">03</div>
+        <div class="flow-step-label">Falar com o Tutor</div>
+      </div>
+    </div>
+
+    <h3 class="sub-title">Passo 1: falar com o cardiologista diretamente</h3>
+    <ul class="body-list">
+      <li>Não depender do que o veterinário entendeu que o cardio disse.</li>
+      <li>Pedir o contato do cardiologista. Na maioria das vezes é aceito.</li>
+      <li>Perguntar o que exatamente foi liberado e se há alguma conduta possível antes da cirurgia.</li>
+      <li>Se o cardio resistir, usar a frase: "Se o senhor está liberando, escreve para mim." Isso muda o comportamento.</li>
+    </ul>
+
+    <h3 class="sub-title">Passo 2: falar com o veterinário</h3>
+    <ul class="body-list">
+      <li>Nunca passar por cima do veterinário cliente. Manter tudo alinhado com ele.</li>
+      <li>Trazer o veterinário para a conversa com o tutor. Ele aprende a posicionar o serviço.</li>
+      <li>Deixar claro: "Posso conversar com o tutor? Quero que você esteja presente."</li>
+    </ul>
+
+    <h3 class="sub-title">Passo 3: falar com o tutor</h3>
+    <ul class="body-list">
+      <li>Usar linguagem acessível, sem jargão técnico.</li>
+      <li>Apresentar o pior cenário. "Se acontecer, já está avisado."</li>
+      <li>Dar opções concretas: tratar e repetir eco, encaminhar para outro serviço, ou assumir o risco juntos.</li>
+      <li>"Se fosse seu, você faria?" Responder com honestidade e segurança.</li>
+      <li>"Vamos correr o risco juntos?" Dita com convicção, essa frase gera autoridade.</li>
+    </ul>
+
+    <div class="callout callout-blue">
+      <strong>Posicionamento</strong>
+      Quanto mais você demonstra que sabe do que está falando, mais o tutor e o veterinário confiam. Autoridade não é ego. É conhecimento técnico aplicado com clareza.
+    </div>
+  </div>
+
+  <!-- 6. QUANDO DIZER NÃO -->
+  <div id="nao" class="section">
+    <div class="section-tag">
+      <div class="dot-tag dot-essential"></div>
+      <span class="section-label">Indispensável</span>
+    </div>
+    <h2 class="section-title">Quando Dizer Não</h2>
+
+    <div class="rules-block">
+      <h4>Critérios para Recusar o Caso</h4>
+      <div class="rule-item">
+        <div class="rule-num">1</div>
+        <div>Sem pós-operatório adequado disponível: não anestesiar — ou anestesiar somente se houver estrutura de recuperação garantida</div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-num">2</div>
+        <div>Sem condições de monitoração mínima no trans: não anestesiar</div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-num">3</div>
+        <div>Sem tutor ciente dos riscos reais: não anestesiar</div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-num">4</div>
+        <div>Cardiopatia que inviabiliza a anestesia mesmo com protocolo ajustado: não anestesiar</div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-num">5</div>
+        <div>Se o veterinário chamar outro anestesista após o não: essa é a consequência — aceitar</div>
+      </div>
+    </div>
+
+    <div class="callout callout-essential">
+      <strong>Realidade do Início de Carreira</strong>
+      No início da carreira você vai falar muito sim para depois poder falar não. Isso é parte do processo. O importante é saber o risco que está correndo quando diz sim, e avisar a todos os envolvidos.
+    </div>
+  </div>
+
+  <!-- 7. O QUE PRECISA SABER -->
+  <div id="saber" class="section">
+    <div class="section-tag">
+      <div class="dot-tag dot-important"></div>
+      <span class="section-label">Importante</span>
+    </div>
+    <h2 class="section-title">O Que Você Precisa Saber Para Ter Essa Conversa</h2>
+
+    <ul class="body-list">
+      <li>A diferença entre eletrocardiograma e ecocardiograma e o que cada um mostra.</li>
+      <li>Os parâmetros básicos do eco: relação AE/Ao, fração de encurtamento, remodelamento de VE.</li>
+      <li>Predisposição racial: qual raça tem qual cardiopatia em qual faixa etária.</li>
+      <li>O que é repercussão hemodinâmica e como ela aparece no exame e na clínica.</li>
+      <li>Auscultar e palpar a femoral em todo paciente. Criar esse hábito.</li>
+      <li>Sinais clínicos de ICC: tosse, intolerância ao exercício, síncope, cianose.</li>
+    </ul>
+
+    <h3 class="sub-title">Antes e Depois: o que muda quando você sabe do que está falando</h3>
+
+    <div class="before-after">
+      <div class="ba-header">
+        <div>Situação</div>
+        <div>Sem o Paper</div>
+        <div>Com o Paper</div>
+      </div>
+      <div class="ba-row">
+        <div class="ba-topic">'O cardio liberou'</div>
+        <div class="ba-before">Acata e anestesia com protocolo cardiopata</div>
+        <div class="ba-after">Liga para o cardio e entende o que foi liberado de fato</div>
+      </div>
+      <div class="ba-row">
+        <div class="ba-topic">Tratamento recente sem eco de controle</div>
+        <div class="ba-before">Anestesia depois de 5 dias de tratamento</div>
+        <div class="ba-after">Aguarda 15-20 dias ou anestesia com quadro basal</div>
+      </div>
+      <div class="ba-row">
+        <div class="ba-topic">Eletro alterado em shih tzu</div>
+        <div class="ba-before">'A raça tem isso' e ignora</div>
+        <div class="ba-after">Explica ao tutor e ao veterinário por que a conversa precisa acontecer</div>
+      </div>
+      <div class="ba-row">
+        <div class="ba-topic">Exame chegou na hora</div>
+        <div class="ba-before">Aceita o risco porque já está presente</div>
+        <div class="ba-after">Reconhece a armadilha e toma a decisão com autonomia</div>
+      </div>
+      <div class="ba-row">
+        <div class="ba-topic">Sem pós-operatório adequado</div>
+        <div class="ba-before">Opera e torce para dar certo</div>
+        <div class="ba-after">Encaminha ou adia até garantir estrutura</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLAYBOOK CTA -->
+  <div class="playbook-cta">
+    <h3>Precisa do passo a passo completo?</h3>
+    <p>O Playbook deste Café com a Bá tem todas as condutas organizadas em formato de checklist interativo, do primeiro contato com o cardio ao encerramento do procedimento.</p>
+    <a class="playbook-btn" href="cardio_liberou_checklist.html" target="_blank">Acessar o Checklist</a>
+  </div>
+
+  <!-- 8. MODELOS MENTAIS -->
+  <div id="modelos" class="section">
+    <div class="section-tag">
+      <div class="dot-tag dot-good"></div>
+      <span class="section-label">Modelos Mentais</span>
+    </div>
+    <h2 class="section-title">Perguntas de Ativação</h2>
+
+    <div class="mental-model">
+      <div class="mm-num">1</div>
+      <div class="mm-content">
+        <h4>O cardio liberou. O que ele quis dizer?</h4>
+        <p>Ligar e perguntar diretamente. O telefone sem fio entre o cardio e o veterinário mata.</p>
+      </div>
+    </div>
+
+    <div class="mental-model">
+      <div class="mm-num">2</div>
+      <div class="mm-content">
+        <h4>O paciente iniciou tratamento recentemente. Tem eco de controle?</h4>
+        <p>Sem eco de controle após 15 a 20 dias de tratamento, não anestesiar ou anestesiar com o quadro basal conhecido.</p>
+      </div>
+    </div>
+
+    <div class="mental-model">
+      <div class="mm-num">3</div>
+      <div class="mm-content">
+        <h4>O eletro veio alterado. Vou ignorar porque 'a raça tem isso'?</h4>
+        <p>Não. A conversa precisa acontecer. Ignorar é produzir prova contra si mesmo.</p>
+      </div>
+    </div>
+
+    <div class="mental-model">
+      <div class="mm-num">4</div>
+      <div class="mm-content">
+        <h4>Só posso pedir um exame. Qual?</h4>
+        <p>Depende da raça e da faixa etária. Saber justificar a escolha faz parte da autoridade técnica.</p>
+      </div>
+    </div>
+
+    <div class="mental-model">
+      <div class="mm-num">5</div>
+      <div class="mm-content">
+        <h4>O tutor pergunta: 'Se fosse seu, você faria?'</h4>
+        <p>Responder com honestidade e segurança. Essa pergunta exige repertório clínico real.</p>
+      </div>
+    </div>
+
+    <div class="mental-model">
+      <div class="mm-num">6</div>
+      <div class="mm-content">
+        <h4>Não há pós-operatório adequado. O que fazer?</h4>
+        <p>Não operar ou encaminhar para onde tenha estrutura. Quando possível, fazer de manhã para ter o dia inteiro de observação.</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="paper-footer">
+  © 2026 Bárbara Ferrari — Anestesia Veterinária na Prática | Café com a Bá &nbsp;·&nbsp; Material exclusivo para alunos do AVP
+</div>
+
+</body>
+</html>
